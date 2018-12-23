@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('muebles','MuebleController@index');
+Route::post('muebles','MuebleController@store');
+
+Route::get('muebles/{id_mueble}','MuebleController@show');
+Route::put('muebles/{id_mueble}','MuebleController@modify');
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
