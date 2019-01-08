@@ -27,10 +27,6 @@ class Mueble extends Model
         'mue_ancho',
         'mue_profundidad',
         'mue_tapizado',
-        'estado',
-        'created_at',
-        'updated_at',
-        'deleted_at',
         'usu_id',
         'usu_id_baja',
     ];
@@ -42,6 +38,15 @@ class Mueble extends Model
         'id_tipo_mueble' => 'tmu_id',
         'id_tipo_linea' => 'tli_id',
         'cantidad_puertas' => 'mue_cantidad_puertas',
+         'cantidad_estantes'=> 'mue_cantidad_estantes',
+        'cantidad_cajones' => 'mue_cantidad_cajones',
+        'alto' =>'mue_alto',
+        'ancho'=>'mue_ancho',
+        'profundidad'=>'mue_profundidad',
+        'tapizado'=> 'mue_tapizado',
+        'id_Usuario'=> 'usu_id' ,
+        'id_Usuario_baja'=> 'usu_id_baja',
+
 
     ];
     
@@ -51,6 +56,24 @@ class Mueble extends Model
         'descripcion',
         'id_tipo_mueble',
         'id_tipo_linea',
-    
+        'cantidad_puertas',
+        'cantidad_estantes',
+        'cantidad_cajones',
+        'alto',
+        'ancho',
+        'profundidad',
+        'tapizado',
+        'id_Usuario',
+        'id_Usuario_baja',
     ];
+
+    public function tipo_mueble()
+    {
+        return $this->hasOne('App\TipoMueble','tmu_id');
+    }
+
+    public function tipo_linea()
+    {
+        return $this->hasOne('App\TipoLinea','tli_id');
+    }
 }

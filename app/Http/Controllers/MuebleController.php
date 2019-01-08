@@ -19,14 +19,22 @@ class MuebleController extends Controller
     public function store(){
         $request = request();
         $nombre = $request->input('nombre');
-        $descripcion = $request->input('descripcion');
+        $id_tipo_linea = $request->input('id_tipo_linea');
+        $id_tipo_mueble = $request->input('id_tipo_mueble');
+        $cantidad_puertas= $request->input('cantidad_puertas');
+        $cantidad_cajones = $request->input('cantidad_cajones');
+        $cantidad_estante = $request->input('cantidad_estante');
+        $tapizado = $request->input('tapizado');
         $mueble = new Mueble;
         $mueble->nombre=$nombre;
         $mueble->descripcion=$descripcion;
-        $mueble->id_tipo_mueble = 1;
-        $mueble->id_tipo_linea = 1;
-        $mueble->mue_tapizado = 0;
+        $mueble->id_tipo_mueble = $id_tipo_mueble;
+        $mueble->id_tipo_linea = $id_tipo_linea;
+        $mueble->mue_tapizado = $tapizado;
         $mueble->usu_id = 0;
+        $mueble->cantidad_estante =$cantidad_estante;
+        $mueble->cantidad_cajones = $cantidad_cajones;
+        $mueble->cantidad_puertas = $cantidad_puertas;
         $mueble->save();
         return response()->json($mueble,200);
     }
@@ -45,10 +53,23 @@ class MuebleController extends Controller
 
         $nombre = $request->input('nombre');
         $descripcion = $request->input('descripcion');
+        $id_tipo_linea = $request->input('id_tipo_linea');
+        $id_tipo_mueble = $request->input('id_tipo_mueble');
+        $cantidad_puertas= $request->input('cantidad_puertas');
+        $cantidad_cajones = $request->input('cantidad_cajones');
+        $cantidad_estante = $request->input('cantidad_estante');
+        $tapizado = $request->input('tapizado');
 
         $mueble = Mueble::find($id_mueble);
         $mueble->nombre=$nombre;
         $mueble->descripcion=$descripcion;
+        $mueble->id_tipo_mueble = $id_tipo_mueble;
+        $mueble->id_tipo_linea = $id_tipo_linea;
+        $mueble->tapizado = $tapizado;
+        $mueble->usu_id = 0;
+        $mueble->cantidad_estante =$cantidad_estante;
+        $mueble->cantidad_cajones = $cantidad_cajones;
+        $mueble->cantidad_puertas = $cantidad_puertas;
         $mueble->save();
         return response()->json($mueble,200);
     }

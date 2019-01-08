@@ -25,12 +25,17 @@ Route::get('muebles/{id_mueble}/fotos','MuebleController@fotos');
 Route::get('muebles/{id_mueble}/fotos/{id_mueble_foto}','MuebleController@foto');
 
 //TipoMueble
-Route::get('tipo_muebles','TipoMuebleController@index');
-Route::post('tipo_muebles','TipoMuebleController@store');
-Route::get('tipo_muebles/{id_tipo_mueble}','TipoMuebleController@show');
+Route::get('muebles/tipos','TipoMuebleController@index');
+Route::post('muebles/tipos','TipoMuebleController@store');
+Route::get('tmuebles/tipos/{id_tipo_mueble}','TipoMuebleController@show');
+
+Route::get('muebles/tipos/lineas','TipoMuebleController@index');
+Route::get('muebles/tipos/maderas','TipoMaderaController@index');
 
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+
+
 });
