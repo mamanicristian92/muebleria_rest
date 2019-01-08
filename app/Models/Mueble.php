@@ -20,6 +20,19 @@ class Mueble extends Model
         'mue_descripcion',
         'tmu_id',
         'tli_id',
+        'mue_cantidad_puertas',
+        'mue_cantidad_estantes',
+        'mue_cantidad_cajones',
+        'mue_alto',
+        'mue_ancho',
+        'mue_profundidad',
+        'mue_tapizado',
+        'estado',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'usu_id',
+        'usu_id_baja',
     ];
 
     protected $maps = [
@@ -28,6 +41,8 @@ class Mueble extends Model
         'descripcion' => 'mue_descripcion',
         'id_tipo_mueble' => 'tmu_id',
         'id_tipo_linea' => 'tli_id',
+        'cantidad_puertas' => 'mue_cantidad_puertas',
+
     ];
     
     protected $appends=[
@@ -36,5 +51,6 @@ class Mueble extends Model
         'descripcion',
         'id_tipo_mueble',
         'id_tipo_linea',
+    
     ];
 }
