@@ -14,17 +14,6 @@ class TipoMaderaController extends Controller
         $todo = TipoMadera::where('estado',1)->get();
         return response()->json($todo,200);
     }
-    
-    public function store(){
-        $request = request();
-        $nombre = $request->input('nombre');
-        $descripcion = $request->input('descripcion');
-        $tipoMadera = new TipoMadera;
-        $tipoMadera->nombre=$nombre;
-        $tipoMadera->descripcion=$descripcion;
-        $tipoMadera->save();
-        return response()->json($tipoMadera,200);
-    }
 
     public function show(){
         $request = request();

@@ -18,8 +18,10 @@ class TipoMuebleController extends Controller
     public function store(){
         $request = request();
         $nombre = $request->input('nombre');
+        $descripcion = $request->input('descripcion');
         $tipoMueble = new TipoMueble;
         $tipoMueble->nombre=$nombre;
+        $tipoMueble->descripcion=$descripcion;
         $tipoMueble->usu_id = 0;
         $tipoMueble->save();
         return response()->json($tipoMueble,200);
@@ -31,22 +33,22 @@ class TipoMuebleController extends Controller
         $tipoMueble = TipoMueble::find($id_tipo_mueble);
         return response()->json($tipoMueble,200);
     }
-/*
+    
     public function modify(){
         $request = request();
-
-        $id_mueble = $request->route('id_mueble');
+        $id_tipo_mueble = $request->route('id_tipo_mueble');
 
         $nombre = $request->input('nombre');
         $descripcion = $request->input('descripcion');
 
-        $mueble = Mueble::find($id_mueble);
-        $mueble->nombre=$nombre;
-        $mueble->descripcion=$descripcion;
-        $mueble->save();
-        return response()->json($mueble,200);
+        $tipoMueble = TipoMueble::find($id_tipo_mueble);
+        $tipoMueble->nombre=$nombre;
+        $tipoMueble->descripcion=$descripcion;
+        $tipoMueble->usu_id=0;
+        $tipoMueble->save();
+        return response()->json($tipoMueble,200);
     }
-
+    /*
     public function delete(){
         $request = request();
         $id_mueble = $request->route('id_mueble');

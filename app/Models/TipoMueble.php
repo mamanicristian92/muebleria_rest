@@ -17,6 +17,7 @@ class TipoMueble extends Model
     protected $hidden = [
         'tmu_id',
         'tmu_nombre',
+        'tmu_descripcion',
         'estado',
         'created_at',
         'updated_at',
@@ -28,11 +29,13 @@ class TipoMueble extends Model
     protected $maps = [
         'id' => 'tmu_id',
         'nombre' => 'tmu_nombre',
+        'descripcion' => 'tmu_descripcion',
     ];
     
     protected $appends=[
         'id',
         'nombre',
+        'descripcion',
     ];
     
 }
