@@ -44,10 +44,8 @@ class Mueble extends Model
         'ancho'=>'mue_ancho',
         'profundidad'=>'mue_profundidad',
         'tapizado'=> 'mue_tapizado',
-        'id_Usuario'=> 'usu_id' ,
-        'id_Usuario_baja'=> 'usu_id_baja',
-
-
+        'id_usuario'=> 'usu_id' ,
+        'id_usuario_baja'=> 'usu_id_baja',
     ];
     
     protected $appends=[
@@ -63,8 +61,8 @@ class Mueble extends Model
         'ancho',
         'profundidad',
         'tapizado',
-        'id_Usuario',
-        'id_Usuario_baja',
+        'id_usuario',
+        'id_usuario_baja',
     ];
 
     public function tipo_mueble()
@@ -75,5 +73,10 @@ class Mueble extends Model
     public function tipo_linea()
     {
         return $this->hasOne('App\TipoLinea','tli_id');
+    }
+
+    public function fotos()
+    {
+        return $this->hasMany('App\MuebleFoto','mue_id');
     }
 }

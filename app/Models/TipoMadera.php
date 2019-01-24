@@ -12,7 +12,7 @@ class TipoMadera extends Model
     use Eloquence, Mappable;
 
     protected $table = 'tbl_tipo_madera';
-    protected $primaryKey='tma_id';
+    protected $primaryKey = 'tma_id';
 
     protected $hidden = [
         'tma_id',

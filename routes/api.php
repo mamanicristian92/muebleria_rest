@@ -13,9 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
+//Productos
+Route::get('productos','ProductoController@index');	//get all
+Route::post('productos','ProductoController@store');	//agregar uno
+Route::get('productos/{id_producto}','ProductoController@show')->where('id_producto','[1-9]+'); //ver por id
+Route::put('productos/{id_producto}','ProductoController@modify')->where('id_producto','[1-9]+');
+Route::delete('productos/{id_producto}','ProductoController@delete')->where('id_producto','[1-9]+');
+
+Route::get('productos/{id_producto}/fotos','ProductoController@fotos');
+Route::post('productos/{id_producto}','ProductoController@agregar_foto')->where('id_producto','[1-9]+');
+Route::get('productos/{id_producto}/fotos/{id_producto_foto}','ProductoController@foto');
+
+//Muebles
 Route::get('muebles','MuebleController@index');	//get all (los disponibles y con tmu_id = 1)
 Route::post('muebles','MuebleController@store');	//agregar uno
-
 Route::get('muebles/{id_mueble}','MuebleController@show')->where('id_mueble','[1-9]+');	//get for id
 Route::put('muebles/{id_mueble}','MuebleController@modify')->where('id_mueble','[1-9]+');	//modificar por id
 Route::delete('muebles/{id_mueble}','MuebleController@delete')->where('id_mueble','[1-9]+');	//borrar por id
