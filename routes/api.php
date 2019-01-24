@@ -46,6 +46,16 @@ Route::get('muebles/tipos/lineas','TipoMuebleController@index');
 //TipoMadera
 Route::get('muebles/tipos/maderas','TipoMaderaController@index');
 
+//Productos
+Route::get('productos','ProductoController@index');
+//Productos
+Route::post('productos','ProductoController@store');
+Route::get('productos/{id_producto}','ProductoController@show')->where('id_producto','[1-9]+');	//get for id
+Route::put('productos/{id_producto}','ProductoController@modify')->where('id_producto','[1-9]+');
+Route::delete('productos/{id_producto}','ProductoController@delete')->where('id_producto','[1-9]+');
+
+
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
