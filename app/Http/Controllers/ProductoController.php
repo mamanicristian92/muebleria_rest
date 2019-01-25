@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
-//use App\Models\MuebleFoto;
+use App\Models\ProductoFoto;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 use Carbon\Carbon;
 class ProductoController extends Controller
@@ -78,27 +80,34 @@ class ProductoController extends Controller
 
     public function agregar_foto(){
         $request = request();
-        $id_mueble = $request->route('id_mueble');
+        $id_producto = $request->route('id_producto');
         if($request->hasFile('foto')){
             $archivo = $request->file('foto');
-            $dir = $archivo->store('muebles/fotos');
-            $foto = new MuebleFoto;
+            $dir = $archivo->store('productos/fotos');
+            $foto = new ProductoFoto;
             $foto->nombre = $archivo->getClientOriginalName();
-            $foto->mfo_dir = $dir;
+            $foto->pfo_dir = $dir;
             $foto->usu_id = 0;
-            $foto->mue_id = $id_mueble;
+            $foto->pro_id = $id_producto;
             $foto->save();
             return response()->json($foto,200);
         }
         return response()->json(null,200);
     }
      public function fotos(){
-        $fotos = MuebleFoto::where('estado',1)->get();
+        $fotos = ProductoFoto::where('estado',1)->get();
         return response()->json($fotos,200);
     }
     public function foto(){
-        $id_foto = request()->route('id_mueble_foto');
-        $foto = MuebleFoto::find($id_foto);
-        return response()->download(storage_path("app/{$foto->mfo_dir}"));
+        $id_foto = request()->route('id_producto_foto');
+        $foto = ProductoFoto::find($id_foto);
+        return response()->download(storage_path("app/{$foto->pfo_dir}"));
+    }
+    public function deletefoto(){
+        $id_foto = request()->route('id_producto_foto');
+        $foto = ProductoFoto::find($id_foto);
+        $foto->estado = 0;
+        $foto->save();  
+        Storage::delete("{$foto->pfo_dir}"); 
     }
 }
