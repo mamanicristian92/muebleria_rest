@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mueble;
+use App\Models\Producto;
 use App\Models\MuebleFoto;
 use App\Http\Controllers\Controller;
 
@@ -13,20 +14,29 @@ class MuebleController extends Controller
     public function index(){
         $request = request();
         $tipo_mueble = $request->query('tipo_mueble',1);
-        $todo = Mueble::where('id_tipo_mueble',$tipo_mueble)->where('estado',1)->get();
+        $todo = Mueble::where('id_tipo_mueble',$tipo_mueble)
+            ->whereHas('productos',function($q){
+                $q->where('estado',1);
+            })
+            ->get();
         return response()->json($todo,200);
     }
     public function store(){
         $request = request();
         $nombre = $request->input('nombre');
         $descripcion = $request->input('descripcion');
+        $producto=new Producto;
+        $producto->id_categoria=1;
+        $producto->nombre= $nombre;
+        $producto->usu_id = 0;
+        $producto->pro_descripcion=$descripcion;
+        $producto->save();
         $mueble = new Mueble;
-        $mueble->nombre=$nombre;
-        $mueble->descripcion=$descripcion;
         $mueble->id_tipo_mueble = 1;
         $mueble->id_tipo_linea = 1;
         $mueble->mue_tapizado = 0;
         $mueble->usu_id = 0;
+        $mueble->id_producto=$producto->id;
         $mueble->save();
         return response()->json($mueble,200);
     }
@@ -57,11 +67,10 @@ class MuebleController extends Controller
         $request = request();
         $id_mueble = $request->route('id_mueble');
         $mueble = Mueble::find($id_mueble);
-        $mueble->estado = 0;
-        $mueble->deleted_at = Carbon::now();
-        $mueble->usu_id_baja = 0;
-        $mueble->save();
-
+        $producto = Producto::fin($mueble->id_producto);
+        $producto->estado = 0;
+        $producto->deleted_at = Carbon::now();
+        $producto->save();
         return response()->json($mueble,200);
     }
 
