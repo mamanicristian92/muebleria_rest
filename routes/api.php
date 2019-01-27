@@ -14,15 +14,27 @@ use Illuminate\Http\Request;
 */
 
 //Productos
+/*
+Route::prefix('productos')->group(function(){
+
+});
+*/
 Route::get('productos','ProductoController@index');	//get all
 Route::post('productos','ProductoController@store');	//agregar uno
 Route::get('productos/{id_producto}','ProductoController@show')->where('id_producto','[1-9]+'); //ver por id
 Route::put('productos/{id_producto}','ProductoController@modify')->where('id_producto','[1-9]+');
 Route::delete('productos/{id_producto}','ProductoController@delete')->where('id_producto','[1-9]+');
 
-Route::get('productos/{id_producto}/fotos','ProductoController@fotos');
+Route::get('productos/{id_producto}/fotos','ProductoController@fotos')->where('id_producto','[1-9]+');
 Route::post('productos/{id_producto}','ProductoController@agregar_foto')->where('id_producto','[1-9]+');
-Route::get('productos/{id_producto}/fotos/{id_producto_foto}','ProductoController@foto');
+Route::get('productos/{id_producto}/fotos/{id_producto_foto}','ProductoController@foto')->where('id_producto','[1-9]+');
+
+//Categorias
+Route::get('productos/categorias','CategoriaController@index');
+Route::post('productos/categorias','CategoriaController@store');
+Route::get('productos/categorias/{id_categoria}','CategoriaController@show')->where('id_categoria','[1-9]+');
+Route::put('productos/categorias/{id_categoria}','CategoriaController@modify')->where('id_categoria','[1-9]+');
+Route::delete('productos/categorias/{id_categoria}','CategoriaController@delete')->where('id_categoria','[1-9]+');
 
 //Muebles
 Route::get('muebles','MuebleController@index');	//get all (los disponibles y con tmu_id = 1)
