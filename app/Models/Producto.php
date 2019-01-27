@@ -17,6 +17,7 @@ class Producto extends Model
     protected $hidden = [
         'pro_id',
         'pro_nombre',
+        'pro_descripcion',
         'pro_cantidad',
         'pro_cantidad_min',
         'pro_precio',
@@ -27,6 +28,7 @@ class Producto extends Model
     protected $maps = [
         'id' => 'pro_id',
         'nombre' => 'pro_nombre',
+         'descripcion'=>'pro_descripcion',
         'cantidad' => 'pro_cantidad',
         'cantidad_min'=>'pro_cantidad_min',
         'precio'=>'pro_precio',
@@ -37,6 +39,7 @@ class Producto extends Model
     protected $appends=[
         'id',
         'nombre',
+        'descripcion',
         'cantidad',
         'cantidad_min',
         'precio',

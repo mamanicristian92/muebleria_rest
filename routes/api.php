@@ -67,6 +67,11 @@ Route::get('productos/{id_producto}','ProductoController@show')->where('id_produ
 Route::put('productos/{id_producto}','ProductoController@modify')->where('id_producto','[1-9]+');
 Route::delete('productos/{id_producto}','ProductoController@delete')->where('id_producto','[1-9]+');
 
+Route::post('productos/{id_producto}/fotos','ProductoController@agregar_foto');	//
+Route::get('productos/{id_producto}/fotos','ProductoController@fotos');
+Route::get('productos/{id_producto}/fotos/{id_producto_foto}','ProductoController@foto');
+Route::delete('productos/{id_producto}/fotos/{id_producto_foto}','ProductoController@deletefoto');
+
 
 
 

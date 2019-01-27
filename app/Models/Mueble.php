@@ -16,8 +16,7 @@ class Mueble extends Model
 
     protected $hidden = [
         'mue_id',
-        'mue_nombre',
-        'mue_descripcion',
+        'pro_id',
         'tmu_id',
         'tli_id',
         'mue_cantidad_puertas',
@@ -28,13 +27,11 @@ class Mueble extends Model
         'mue_profundidad',
         'mue_tapizado',
         'usu_id',
-        'usu_id_baja',
+        
     ];
 
     protected $maps = [
         'id' => 'mue_id',
-        'nombre' => 'mue_nombre',
-        'descripcion' => 'mue_descripcion',
         'id_tipo_mueble' => 'tmu_id',
         'id_tipo_linea' => 'tli_id',
         'cantidad_puertas' => 'mue_cantidad_puertas',
@@ -44,14 +41,17 @@ class Mueble extends Model
         'ancho'=>'mue_ancho',
         'profundidad'=>'mue_profundidad',
         'tapizado'=> 'mue_tapizado',
+        'id_producto'=>'pro_id',
+
         'id_usuario'=> 'usu_id' ,
-        'id_usuario_baja'=> 'usu_id_baja',
+       
+
+
     ];
     
     protected $appends=[
         'id',
-        'nombre',
-        'descripcion',
+        'id_producto',
         'id_tipo_mueble',
         'id_tipo_linea',
         'cantidad_puertas',
@@ -62,21 +62,23 @@ class Mueble extends Model
         'profundidad',
         'tapizado',
         'id_usuario',
-        'id_usuario_baja',
+       
     ];
+
+    public $timestamps = false;
 
     public function tipo_mueble()
     {
-        return $this->hasOne('App\TipoMueble','tmu_id');
+    return $this->hasOne('App\Models\TipoMueble','tmu_id');
     }
 
     public function tipo_linea()
     {
-        return $this->hasOne('App\TipoLinea','tli_id');
+    return $this->hasOne('App\Models\TipoLinea','tli_id');
     }
 
-    public function fotos()
+    public function productos()
     {
-        return $this->hasMany('App\MuebleFoto','mue_id');
+        return $this->hasOne('App\Models\Producto','pro_id','pro_id');
     }
 }
