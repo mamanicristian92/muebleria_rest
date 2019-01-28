@@ -77,7 +77,7 @@ class Mueble extends Model
     return $this->hasOne('App\Models\TipoLinea','tli_id');
     }
 
-    public function productos()
+    public function producto()
     {
         return $this->hasOne('App\Models\Producto','pro_id','pro_id');
     }

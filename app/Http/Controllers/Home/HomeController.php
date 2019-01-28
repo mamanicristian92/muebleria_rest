@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
 	public function index(){
 		$request = request();
-		$muebles = Mueble::where('estado',1)->get();
+		$muebles = Mueble::all();
 		return view('welcome', ['muebles' => $muebles]);
 	}
 }

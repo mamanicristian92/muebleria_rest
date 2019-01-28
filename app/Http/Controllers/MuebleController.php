@@ -14,8 +14,8 @@ class MuebleController extends Controller
     public function index(){
         $request = request();
         $tipo_mueble = $request->query('tipo_mueble',1);
-        $todo = Mueble::where('id_tipo_mueble',$tipo_mueble)
-            ->whereHas('productos',function($q){
+        $todo = Mueble::with('producto')->where('id_tipo_mueble',$tipo_mueble)
+            ->whereHas('producto',function($q){
                 $q->where('estado',1);
             })
             ->get();
@@ -44,7 +44,7 @@ class MuebleController extends Controller
     public function show(){
         $request = request();
         $id_mueble = $request->route('id_mueble');
-        $mueble = Mueble::find($id_mueble);
+        $mueble = Mueble::with('producto')->find($id_mueble);
         return response()->json($mueble,200);
     }
 

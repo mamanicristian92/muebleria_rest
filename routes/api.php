@@ -35,8 +35,6 @@ Route::prefix('productos')->group(function(){
 	Route::delete('categorias/{id_categoria}','CategoriaController@delete')->where('id_categoria','[1-9]+');
 });
 
-
-
 //Muebles
 Route::get('muebles','MuebleController@index');	//get all (los disponibles y con tmu_id = 1)
 Route::post('muebles','MuebleController@store');	//agregar uno
@@ -71,9 +69,6 @@ Route::post('productos/{id_producto}/fotos','ProductoController@agregar_foto');	
 Route::get('productos/{id_producto}/fotos','ProductoController@fotos');
 Route::get('productos/{id_producto}/fotos/{id_producto_foto}','ProductoController@foto');
 Route::delete('productos/{id_producto}/fotos/{id_producto_foto}','ProductoController@deletefoto');
-
-
-
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
