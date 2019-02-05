@@ -275,9 +275,11 @@
             <div class="col-md-12">
 
               <div id="main-slider" class="owl-carousel owl-theme">
-                <div class="item"><img src="img/mueble_01.jpg" alt="" class="img-fluid"></div>
-                <div class="item"><img src="img/mueble_02.jpg" alt="" class="img-fluid"></div>
-                <div class="item"><img src="img/mueble_03.jpg" alt="" class="img-fluid"></div>
+                <div class="item"><img src="img/muebles/mueble01.jpg" alt="" class="img-fluid"></div>
+                <div class="item"><img src="img/muebles/mueble02.jpg" alt="" class="img-fluid"></div>
+                <div class="item"><img src="img/muebles/mueble03.jpeg" alt="" class="img-fluid"></div>
+                <div class="item"><img src="img/muebles/mueble04.jpeg" alt="" class="img-fluid"></div>
+                <div class="item"><img src="img/muebles/mueble05.jpg" alt="" class="img-fluid"></div>
               </div>
               <!-- /#main-slider-->
             </div>

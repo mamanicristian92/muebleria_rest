@@ -70,6 +70,10 @@ Route::get('productos/{id_producto}/fotos','ProductoController@fotos');
 Route::get('productos/{id_producto}/fotos/{id_producto_foto}','ProductoController@foto');
 Route::delete('productos/{id_producto}/fotos/{id_producto_foto}','ProductoController@deletefoto');
 
+//Usuarios
+Route::post('register','Auth\LoginController@api_register');
+Route::post('login','Auth\LoginController@api_login');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

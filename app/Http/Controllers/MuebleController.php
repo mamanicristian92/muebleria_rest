@@ -23,20 +23,57 @@ class MuebleController extends Controller
     }
     public function store(){
         $request = request();
+
+        //atributos de producto
         $nombre = $request->input('nombre');
         $descripcion = $request->input('descripcion');
+        $cantidad = $request->input('cantidad');
+        $cantidad_min = $request->input('cantidad_min');
+        $precio = $request->input('precio');
+        $precio_lista = $request->input('precio_lista');
+        $id_categoria = $request->input('id_categoria');
+        //atributos mueble
+        $alto = $request->input('alto');
+        $ancho = $request->input('ancho');
+        $profundidad = $request->input('profundidad');
+        $cantidad_puertas= $request->input('cantidad_puertas');
+        $cantidad_cajones= $request->input('cantidad_cajones');
+        $cantidad_estantes= $request->input('cantidad_estantes');
+        $tapizado = $request->input('tapizado');
+        
+
         $producto=new Producto;
         $producto->id_categoria=1;
-        $producto->nombre= $nombre;
+        $producto->nombre = $nombre;
+        $producto->pro_descripcion = $descripcion;
+        //$producto->cantidad = $cantidad;
+        //$producto->cantidad_min = $cantidad_min;
+        $producto->cantidad = 2;
+        $producto->cantidad_min = 1;
+        //$producto->precio = $precio;
+        //$producto->precio_lista = $precio_lista;
+        $producto->precio = 100;
+        $producto->precio_lista = 100;
+        //$producto->id_categoria = $id_categoria;
         $producto->usu_id = 0;
-        $producto->pro_descripcion=$descripcion;
         $producto->save();
+
         $mueble = new Mueble;
         $mueble->id_tipo_mueble = 1;
         $mueble->id_tipo_linea = 1;
-        $mueble->mue_tapizado = 0;
+        //$mueble->mue_tapizado = $tapizado;
+        $mueble->mue_tapizado = false;
+        $mueble->alto = $alto;
+        $mueble->ancho = $ancho;
+        $mueble->profundidad = $profundidad;
+        $mueble->cantidad_puertas = $cantidad_puertas;
+        $mueble->cantidad_cajones = $cantidad_cajones;
+        $mueble->cantidad_estantes = $cantidad_estantes;
+
         $mueble->usu_id = 0;
         $mueble->id_producto=$producto->id;
+
+
         $mueble->save();
         return response()->json($mueble,200);
     }
@@ -50,15 +87,53 @@ class MuebleController extends Controller
 
     public function modify(){
         $request = request();
-
         $id_mueble = $request->route('id_mueble');
-
+        //atributos de producto
         $nombre = $request->input('nombre');
         $descripcion = $request->input('descripcion');
+        $cantidad = $request->input('cantidad');
+        $cantidad_min = $request->input('cantidad_min');
+        $precio = $request->input('precio');
+        $precio_lista = $request->input('precio_lista');
+        $id_categoria = $request->input('id_categoria');
+        //atributos mueble
+        $alto = $request->input('alto');
+        $ancho = $request->input('ancho');
+        $profundidad = $request->input('profundidad');
+        $cantidad_puertas= $request->input('cantidad_puertas');
+        $cantidad_cajones= $request->input('cantidad_cajones');
+        $cantidad_estantes= $request->input('cantidad_estantes');
+        $tapizado = $request->input('tapizado');
 
         $mueble = Mueble::find($id_mueble);
-        $mueble->nombre=$nombre;
-        $mueble->descripcion=$descripcion;
+
+        $mueble->id_tipo_mueble = 1;
+        $mueble->id_tipo_linea = 1;
+        //$mueble->mue_tapizado = $tapizado;
+        $mueble->mue_tapizado = false;
+        $mueble->alto = $alto;
+        $mueble->ancho = $ancho;
+        $mueble->profundidad = $profundidad;
+        $mueble->cantidad_puertas = $cantidad_puertas;
+        $mueble->cantidad_cajones = $cantidad_cajones;
+        $mueble->cantidad_estantes = $cantidad_estantes;
+
+        $producto= Producto::find($mueble->id_producto);
+        $producto->id_categoria=1;
+        $producto->nombre = $nombre;
+        $producto->pro_descripcion = $descripcion;
+        //$producto->cantidad = $cantidad;
+        //$producto->cantidad_min = $cantidad_min;
+        $producto->cantidad = 2;
+        $producto->cantidad_min = 1;
+        //$producto->precio = $precio;
+        //$producto->precio_lista = $precio_lista;
+        $producto->precio = 100;
+        $producto->precio_lista = 100;
+        //$producto->id_categoria = $id_categoria;
+        $producto->usu_id = 0;
+
+        $producto->save();
         $mueble->save();
         return response()->json($mueble,200);
     }

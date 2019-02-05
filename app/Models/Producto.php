@@ -28,7 +28,7 @@ class Producto extends Model
     protected $maps = [
         'id' => 'pro_id',
         'nombre' => 'pro_nombre',
-         'descripcion'=>'pro_descripcion',
+        'descripcion'=>'pro_descripcion',
         'cantidad' => 'pro_cantidad',
         'cantidad_min'=>'pro_cantidad_min',
         'precio'=>'pro_precio',

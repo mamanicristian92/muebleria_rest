@@ -35,18 +35,14 @@ class Mueble extends Model
         'id_tipo_mueble' => 'tmu_id',
         'id_tipo_linea' => 'tli_id',
         'cantidad_puertas' => 'mue_cantidad_puertas',
-         'cantidad_estantes'=> 'mue_cantidad_estantes',
+        'cantidad_estantes'=> 'mue_cantidad_estantes',
         'cantidad_cajones' => 'mue_cantidad_cajones',
         'alto' =>'mue_alto',
         'ancho'=>'mue_ancho',
         'profundidad'=>'mue_profundidad',
         'tapizado'=> 'mue_tapizado',
         'id_producto'=>'pro_id',
-
         'id_usuario'=> 'usu_id' ,
-       
-
-
     ];
     
     protected $appends=[
